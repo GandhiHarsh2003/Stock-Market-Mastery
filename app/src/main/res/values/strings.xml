@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">StockMarketMastery</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_stock_market_mastery">About Stock Market Mastery</string>
+    <string name="description">
+Stocks are becoming increasingly popular globally. Many investors pay close attention to the stock numbers that Wall Street releases to see the profit made. While many stock apps provide numbers, none provide in-depth information for a beginner considering investing in stocks. In addition, the information in some stock apps may not be helpful for those beginner stocks, which may jeopardize their profit. That is where Stock Market Mastery comes into play. The user can invest in stocks easily by providing a platform with well-grounded information. With the rise in popularity of people investing in stocks, providing a platform enabling users to decide whether to invest or continue investing in the company\'s stock will benefit both parties. While other apps are currently within the market that involves stocks, such as "Robin Hood" and Apple's built-in Stocks app, Stock Market Mastery will be different because those apps do not let you build your profile. They are not intended for educational purposes. On our app, you can buy a stock at a particular time and sell it hypothetically to practice your trading skills. Stock Market Mastery is meant for educational purposes for people who are just getting into trading and want to enter this field. Happy stock hunting!</string>
 </resources>
