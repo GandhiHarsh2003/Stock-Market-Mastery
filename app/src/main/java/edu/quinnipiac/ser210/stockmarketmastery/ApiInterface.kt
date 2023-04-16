@@ -20,7 +20,7 @@ interface ApiInterface {
     )
     fun stockSearchPrice(
         @Query("symbol") query: String,
-    ): Call<StockDetailsData>
+    ): Call<QuoteStock>
 
     @GET("logo")
     @Headers(
@@ -29,7 +29,7 @@ interface ApiInterface {
     )
     fun stockLogos(
         @Query("symbol") query: String,
-    ): Call<StockDetailsData>
+    ): Call<LogoStock>
 
     @GET("price")
     @Headers(
@@ -38,7 +38,7 @@ interface ApiInterface {
     )
     fun stockRealTimePrice(
         @Query("symbol") query: String,
-    ): Call<StockDetailsData>
+    ): Call<RealTimePrice>
 
     companion object{
         // pass in URL for api

@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 
 
 class StockAdapter(private val context: Context, private val navController: NavController): RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
-    private var data = mutableListOf<StockDetailsData>()
+    private var data = arrayListOf<StockDetailsData>()
 
     inner class StockViewHolder(view: View, private val context: Context) : RecyclerView.ViewHolder(view) {
         val priceTextView: TextView = view.findViewById(R.id.GetAPICurrentPrice)
@@ -22,12 +22,15 @@ class StockAdapter(private val context: Context, private val navController: NavC
 
         fun bindData(stock: StockDetailsData) {
             if (stock.realTimePrice != null) {
-                priceTextView.text = stock.realTimePrice.price.toString()
+                priceTextView.text = stock.realTimePrice.price
             } else {
                 priceTextView.text = "N/A"
             }
-            volumeTextView.text = stock.quoteStock.volume.toString()
-
+            if (stock.quoteStock != null) {
+                volumeTextView.text = stock.quoteStock.volume
+            } else {
+                volumeTextView.text = "N/A"
+            }
             Glide.with(context)
                 .load(stock.logoStock.url)
                 .apply(RequestOptions().centerCrop())

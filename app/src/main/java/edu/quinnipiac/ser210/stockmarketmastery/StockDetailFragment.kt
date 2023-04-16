@@ -5,24 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import edu.quinnipiac.ser210.stockmarketmastery.databinding.FragmentStockDetailBinding
-import okhttp3.Response
-import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 
 
-class StockDetailFragment : Fragment() {
+var quote: QuoteStock? = null
+var sym: LogoStock? = null
+var cp: RealTimePrice? = null
 
+class StockDetailFragment : Fragment() {
     lateinit var symbol: String
     private lateinit var binding: FragmentStockDetailBinding
     private lateinit var stockAdapter: StockAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,43 +49,81 @@ class StockDetailFragment : Fragment() {
         binding.stockRecyclerView.layoutManager = LinearLayoutManager(context)
 
         // Call the API to get the stock details for the entered symbol
-        ApiInterface.create().stockSearchPrice(symbol).enqueue(object : Callback<StockDetailsData> {
+        ApiInterface.create().stockRealTimePrice(symbol).enqueue(object : Callback<RealTimePrice> {
             override fun onResponse(
-                call: Call<StockDetailsData>, response: retrofit2.Response<StockDetailsData>
+                call: Call<RealTimePrice>, response: retrofit2.Response<RealTimePrice>
             ) {
                 if (response.isSuccessful) {
-                    val stockDetailsData = response.body()
-
-                    // If the response body is not null, add it to the adapter
-                    stockDetailsData?.let { stockAdapter.updateStocks(listOf(it)) }
+                    val realTimePrice = response.body()
+                    println("THis is is real time" + realTimePrice)
+                    cp = realTimePrice
+                    pleaseUpdate()
                 }
             }
 
-            override fun onFailure(call: Call<StockDetailsData>, t: Throwable) {
+            override fun onFailure(call: Call<RealTimePrice>, t: Throwable) {
                 // Handle failure case
                 t.message?.let { Log.d("onFailure", it) }
             }
         })
+
+        ApiInterface.create().stockLogos(symbol).enqueue(object : Callback<LogoStock> {
+            override fun onResponse(
+                call: Call<LogoStock>, response: retrofit2.Response<LogoStock>
+            ) {
+                if (response.isSuccessful) {
+                    val logoUrl = response.body()
+                    println("THis is is url" + logoUrl)
+                    sym = logoUrl
+                    pleaseUpdate()
+                }
+            }
+
+            override fun onFailure(call: Call<LogoStock>, t: Throwable) {
+                // Handle failure case
+                t.message?.let { Log.d("onFailure", it) }
+            }
+        })
+
+        ApiInterface.create().stockSearchPrice(symbol).enqueue(object : Callback<QuoteStock> {
+            override fun onResponse(
+                call: Call<QuoteStock>, response: retrofit2.Response<QuoteStock>
+            ) {
+                if (response.isSuccessful) {
+                    val quoteStock = response.body()
+                    println("THis is is qote stock" + quoteStock)
+                    quote = quoteStock
+                    pleaseUpdate()
+                }
+            }
+
+            override fun onFailure(call: Call<QuoteStock>, t: Throwable) {
+                // Handle failure case
+                println("THis is is qote stock")
+
+                t.message?.let { Log.d("onFailure", it) }
+            }
+        })
+    }
+
+    private fun pleaseUpdate(){
+        if (quote != null && sym != null && cp != null) {
+            updateStockDetails(quote!!, cp!!, sym!!)
+        } else {
+            println("it is null")
+        }
+    }
+    private fun updateStockDetails(
+        quoteStock: QuoteStock,
+        realTimePrice: RealTimePrice,
+        logoStock: LogoStock
+    ) {
+        val stockDetailsData =
+            StockDetailsData(
+                quoteStock = quoteStock,
+                realTimePrice = realTimePrice,
+                logoStock = logoStock
+            )
+        stockAdapter.updateStocks(listOf(stockDetailsData))
     }
 }
-
-//        // Call the API and update the data in the adapter
-//        val apiInterface = ApiInterface.create().stockSearchPrice()
-//
-//        if (apiInterface != null) {
-//            apiInterface.enqueue(object : Callback<StockDetailsData>{
-//                // if callback was successful, set the country adapter's list to list of countries response
-//                override fun onResponse(call: Call<StockDetailsData>, response: retrofit2.Response<StockDetailsData>) {
-//                    if (response.isSuccessful) {
-//                        val stockResponse: StockDetailsData? = response.body()
-//                        if (stockResponse != null && stockResponse.quoteStock.isNotEmpty()) {
-//                            stockAdapter.updateStocks(stockResponse.quoteStock)
-//                        }
-//                    }
-//                }
-//
-//            override fun onFailure(call: Call<StockDetailsData>, t: Throwable) {
-//                    // Handle failure case
-//                    t.message?.let { Log.d("onFailure", it) }
-//                }
-//        })

@@ -14,10 +14,11 @@
         app:rowCount="6"
         app:columnOrderPreserved="false">
 
+
         <ImageView
             android:id="@+id/GetAPILogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_column="0"
             app:layout_columnSpan="2"
             app:layout_row="0"
