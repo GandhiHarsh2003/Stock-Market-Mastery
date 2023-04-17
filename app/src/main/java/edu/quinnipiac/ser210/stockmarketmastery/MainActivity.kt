@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        NavigationUI.setupActionBarWithNavController(this, navController)
         navController = navHostFragment.navController
         // configuration for tool bar
         val builder = AppBarConfiguration.Builder(navController.graph)

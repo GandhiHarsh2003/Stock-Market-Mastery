@@ -5,31 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="10dp"
     tools:context=".AboutFragment">
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/aboutTitle_textView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:text="@string/about_stock_market_mastery"-->
-<!--        android:textSize="24sp" />-->
+    <TextView
+        android:id="@+id/aboutTitle_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/about_stock_market_mastery"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="28sp" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/stock_imageView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:src="@drawable/stocks" />-->
+    <ImageView
+        android:id="@+id/stock_imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/stocks" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/description_textView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_margin="10dp"-->
-<!--        android:gravity="center"-->
-<!--        android:text="@string/description" />-->
+    <TextView
+        android:id="@+id/description_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Stocks are becoming increasingly popular globally. Many investors pay close attention to the stock numbers that Wall Street releases to see the profit made. While many stock apps provide numbers, none provide in-depth information for a beginner considering investing in stocks. In addition, the information in some stock apps may not be helpful for those beginner stocks, which may jeopardize their profit. That is where Stock Market Mastery comes into play. The user can invest in stocks easily by providing a platform with well-grounded information. With the rise in popularity of people investing in stocks, providing a platform enabling users to decide whether to invest or continue investing in the company\'s stock will benefit both parties. While other apps are currently within the market that involves stocks, such as Robin Hood and Apple's built-in Stocks app, Stock Market Mastery will be different because those apps do not let you build your profile. Other stock apps are not intended for educational purposes. On our app, you can buy a stock at a particular time and sell it hypothetically to practice your trading skills. Stock Market Mastery is meant for educational purposes for people who are just getting into trading and want to enter this field. Happy stock hunting!"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textSize="14sp" />
 
 </LinearLayout>
