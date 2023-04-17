@@ -10,15 +10,34 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import org.w3c.dom.Text
 
 
 class StockAdapter(private val context: Context, private val navController: NavController): RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
-    private var data = arrayListOf<StockDetailsData>()
+     var data = arrayListOf<StockDetailsData>()
 
     inner class StockViewHolder(view: View, private val context: Context) : RecyclerView.ViewHolder(view) {
         val priceTextView: TextView = view.findViewById(R.id.GetAPICurrentPrice)
         val volumeTextView: TextView = view.findViewById(R.id.GetAPIAverageVolume)
         val logoImage: ImageView = view.findViewById(R.id.GetAPILogo)
+        val companyname: TextView = view.findViewById(R.id.GetAPICompanyName)
+        val stockHigh: TextView = view.findViewById(R.id.GetAPIstockHigh)
+        val stockLow: TextView = view.findViewById(R.id.GetAPIstocklow)
+        val stockMedian: TextView = view.findViewById(R.id.GetAPIstockMedian)
+        val stockChange: TextView = view.findViewById(R.id.GetAPIstockChange)
+        val stockClose: TextView = view.findViewById(R.id.GetAPIstockClose)
+        val currency: TextView = view.findViewById(R.id.GetAPIstockCurrency)
+        val date: TextView = view.findViewById(R.id.GetAPIstockDateTime)
+        val exchange: TextView = view.findViewById(R.id.GetAPIstockExchange)
+        //boolean
+        val marketOpen: TextView = view.findViewById(R.id.GetAPIstockMarketOpen)
+        val micCode: TextView = view.findViewById(R.id.GetAPIstockMicCode)
+        val percentChange: TextView = view.findViewById(R.id.GetAPIstockPercentChange)
+        val previousClose: TextView = view.findViewById(R.id.GetAPIstockPreviousClose)
+        val symbol: TextView = view.findViewById(R.id.GetAPIstockSymbol)
+        val timeStamp: TextView = view.findViewById(R.id.GetAPIstockTimestamp)
+
+        private var stockIndex = 0
 
         fun bindData(stock: StockDetailsData) {
             if (stock.realTimePrice != null) {
@@ -31,6 +50,48 @@ class StockAdapter(private val context: Context, private val navController: NavC
             } else {
                 volumeTextView.text = "N/A"
             }
+
+            companyname.text = stock.quoteStock.name
+
+            stockHigh.text = stock.quoteStock.high
+
+            stockLow.text = stock.quoteStock.low
+
+            // unfortunately, there's no median endpoint, so it will have to be calculated..
+            val highValue = stock.quoteStock.high.toDouble()
+
+            val lowValue = stock.quoteStock.low.toDouble()
+
+            val median = (highValue + lowValue) / 2
+
+            stockMedian.text = median.toString()
+
+            stockChange.text = stock.quoteStock.change
+
+            stockClose.text = stock.quoteStock.close
+
+            currency.text = stock.quoteStock.currency
+
+            date.text = stock.quoteStock.datetime
+
+            exchange.text = stock.quoteStock.exchange
+
+            if (stock.quoteStock.is_market_open){
+                marketOpen.text = "OPEN"
+            } else {
+                marketOpen.text = "CLOSED"
+            }
+
+            micCode.text = stock.quoteStock.mic_code
+
+            percentChange.text = stock.quoteStock.percent_change
+
+            previousClose.text = stock.quoteStock.previous_close
+
+            symbol.text = stock.quoteStock.symbol
+
+            timeStamp.text = stock.quoteStock.timestamp.toString()
+
             Glide.with(context)
                 .load(stock.logoStock.url)
                 .apply(RequestOptions().centerCrop())

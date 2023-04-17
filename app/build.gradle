@@ -34,10 +34,9 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
-    viewBinding {
-        enabled = true
-    }
+
     ext.nav_version = '2.3.5'
 }
 
