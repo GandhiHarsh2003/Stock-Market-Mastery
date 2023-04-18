@@ -36,14 +36,13 @@
         android:layout_marginTop="30dp"
         android:inputType="textPersonName"
         android:layout_gravity="center"
-         />
+        android:hint="Stock Symbol"/>
 
     <Button
         android:id="@+id/SearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:layout_marginTop="30dp"
         android:layout_gravity="center"
-         />
+        android:layout_marginTop="30dp"
+        android:text="Search" />
 </LinearLayout>

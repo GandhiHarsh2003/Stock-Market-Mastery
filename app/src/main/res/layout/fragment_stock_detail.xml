@@ -8,11 +8,35 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/stockRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="411dp"
+        android:layout_height="617dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <EditText
+        android:id="@+id/QuantityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="80dp"
+        android:ems="10"
+        android:hint="Quantity"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/BuyButton"
+        app:layout_constraintTop_toBottomOf="@+id/stockRecyclerView" />
+
+    <Button
+        android:id="@+id/BuyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:text="Buy"
+        app:layout_constraintStart_toEndOf="@+id/QuantityText"
+        app:layout_constraintTop_toBottomOf="@+id/stockRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="1" />
+                app:layout_row="1"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPICompanyName"
@@ -45,7 +46,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="1" />
+                app:layout_row="1"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/CurrentPriceLabel"
@@ -55,7 +57,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="2" />
+                app:layout_row="2"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/AverageVolume"
@@ -65,7 +68,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="3" />
+                app:layout_row="3"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIAverageVolume"
@@ -75,7 +79,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="3" />
+                app:layout_row="3"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPICurrentPrice"
@@ -85,7 +90,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="2" />
+                app:layout_row="2"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockHigh"
@@ -95,7 +101,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="4" />
+                app:layout_row="4"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockHigh"
@@ -105,7 +112,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="4" />
+                app:layout_row="4"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stocklow"
@@ -115,7 +123,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="5" />
+                app:layout_row="5"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstocklow"
@@ -125,7 +134,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="5" />
+                app:layout_row="5"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockMedian"
@@ -135,7 +145,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="6" />
+                app:layout_row="6"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockMedian"
@@ -145,7 +156,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="6" />
+                app:layout_row="6"
+                android:layout_margin="8dp" />
 
 
             <TextView
@@ -156,7 +168,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="7" />
+                app:layout_row="7"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockChange"
@@ -166,7 +179,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="7" />
+                app:layout_row="7"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockClose"
@@ -176,7 +190,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="8" />
+                app:layout_row="8"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockClose"
@@ -186,7 +201,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="8" />
+                app:layout_row="8"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockCurrency"
@@ -196,7 +212,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="9" />
+                app:layout_row="9"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockCurrency"
@@ -206,7 +223,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="9" />
+                app:layout_row="9"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockDateTime"
@@ -216,7 +234,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="10" />
+                app:layout_row="10"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockDateTime"
@@ -226,7 +245,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="10" />
+                app:layout_row="10"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockExchange"
@@ -236,7 +256,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="11" />
+                app:layout_row="11"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockExchange"
@@ -246,7 +267,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="11" />
+                app:layout_row="11"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockMarketOpen"
@@ -256,7 +278,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="12" />
+                app:layout_row="12"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockMarketOpen"
@@ -266,7 +289,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="12" />
+                app:layout_row="12"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockMICcode"
@@ -276,7 +300,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="13" />
+                app:layout_row="13"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockMicCode"
@@ -286,7 +311,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="13" />
+                app:layout_row="13"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockPercentChange"
@@ -296,7 +322,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="14" />
+                app:layout_row="14"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockPercentChange"
@@ -306,7 +333,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="14" />
+                app:layout_row="14"
+                android:layout_margin="8dp" />
 
 
 
@@ -318,7 +346,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="15" />
+                app:layout_row="15"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockPreviousClose"
@@ -328,7 +357,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="15" />
+                app:layout_row="15"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/stockSymbol"
@@ -338,7 +368,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="16" />
+                app:layout_row="16"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockSymbol"
@@ -348,7 +379,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="16" />
+                app:layout_row="16"
+                android:layout_margin="8dp" />
 
 
             <TextView
@@ -359,7 +391,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="0"
                 app:layout_columnWeight="1"
-                app:layout_row="17" />
+                app:layout_row="17"
+                android:layout_margin="8dp" />
 
             <TextView
                 android:id="@+id/GetAPIstockTimestamp"
@@ -369,7 +402,8 @@
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_column="1"
                 app:layout_columnWeight="1"
-                app:layout_row="17" />
+                app:layout_row="17"
+                android:layout_margin="8dp" />
 
 
         </androidx.gridlayout.widget.GridLayout>
