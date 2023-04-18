@@ -10,10 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -21,17 +19,11 @@ import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [StockFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StockFragment : Fragment(), View.OnClickListener {
 
     lateinit var navController: NavController
+    lateinit var spinner: Spinner // declare spinner variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +41,24 @@ class StockFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.SearchButton).setOnClickListener(this)
+        spinner = view.findViewById<Spinner>(R.id.chooseOption)
+        val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.stock_options, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val editText = requireView().findViewById<EditText>(R.id.SymbolInput)
+                if(parent?.getItemAtPosition(position).toString().equals("Optional")){
+                    editText.setText("")
+                } else {
+                    editText.setText(parent?.getItemAtPosition(position).toString())
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
     }
 
     override fun onClick(v: View?) {
