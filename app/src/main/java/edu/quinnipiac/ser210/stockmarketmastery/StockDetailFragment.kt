@@ -21,6 +21,7 @@ class StockDetailFragment : Fragment() {
     lateinit var symbol: String
     private lateinit var binding: FragmentStockDetailBinding
     private lateinit var stockAdapter: StockAdapter
+     var stockIndex = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

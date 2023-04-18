@@ -12,9 +12,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.w3c.dom.Text
 
-
+var data = arrayListOf<StockDetailsData>()
+var stockIndex = 0
 class StockAdapter(private val context: Context, private val navController: NavController): RecyclerView.Adapter<StockAdapter.StockViewHolder>() {
-     var data = arrayListOf<StockDetailsData>()
 
     inner class StockViewHolder(view: View, private val context: Context) : RecyclerView.ViewHolder(view) {
         val priceTextView: TextView = view.findViewById(R.id.GetAPICurrentPrice)
@@ -37,7 +37,7 @@ class StockAdapter(private val context: Context, private val navController: NavC
         val symbol: TextView = view.findViewById(R.id.GetAPIstockSymbol)
         val timeStamp: TextView = view.findViewById(R.id.GetAPIstockTimestamp)
 
-        private var stockIndex = 0
+
 
         fun bindData(stock: StockDetailsData) {
             if (stock.realTimePrice != null) {
@@ -106,6 +106,7 @@ class StockAdapter(private val context: Context, private val navController: NavC
 
     override fun onBindViewHolder(holder: StockViewHolder, position: Int) {
         holder.bindData(data[position])
+        stockIndex = position
     }
 
     override fun getItemCount(): Int {
