@@ -61,7 +61,7 @@
                 android:layout_margin="8dp" />
 
             <TextView
-                android:id="@+id/priceBoughtForLabel"
+                android:id="@+id/averageVolumeLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Average Volume"
@@ -72,7 +72,7 @@
                 android:layout_margin="8dp" />
 
             <TextView
-                android:id="@+id/priceBoughtFor_textview"
+                android:id="@+id/GetAPIAverageVolume"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"

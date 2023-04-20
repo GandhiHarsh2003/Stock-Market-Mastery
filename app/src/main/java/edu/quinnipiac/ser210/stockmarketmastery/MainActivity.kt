@@ -11,7 +11,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
-
+/**
+ * Main Activity responsible for containing nav host and tool bar configurations (at some point the navigation drawer will get added)
+ * @author Kevin Rodriguez and Harsh Gandhi
+ * Date: 4/20/23
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
@@ -40,14 +44,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            // share logic
+            // share logic (reused code)
             //https://developer.android.com/training/sharing/send and https://stackoverflow.com/questions/50689206/how-i-can-retrieve-current-fragment-in-navhostfragment
             R.id.share -> {
                 val shareIntent = Intent(Intent.ACTION_SEND)
                 shareIntent.type = "text/plain"
                 val stringBuilder = StringBuilder()
 
-                // Get the currently displayed country in the CountryFragment
+                // Get the currently displayed country in the stock detail fragment
                 val navHostFragment =
                     supportFragmentManager.primaryNavigationFragment as NavHostFragment?
                 val stockFragment =

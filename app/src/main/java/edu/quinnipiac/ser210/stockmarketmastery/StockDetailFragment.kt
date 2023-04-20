@@ -12,7 +12,11 @@ import edu.quinnipiac.ser210.stockmarketmastery.databinding.FragmentStockDetailB
 import retrofit2.Call
 import retrofit2.Callback
 
-
+/**
+ * StockDetailFragment responsible for displaying the data that's being added
+ * @author Kevin Rodriguez and Harsh Gandhi
+ * Date: 4/20/23
+ */
 var quote: QuoteStock? = null
 var sym: LogoStock? = null
 var cp: RealTimePrice? = null
@@ -31,6 +35,7 @@ class StockDetailFragment : Fragment() {
         }
     }
 
+    // initialize binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,8 +51,8 @@ class StockDetailFragment : Fragment() {
         stockAdapter = StockAdapter(requireContext(), findNavController())
 
         // Set the adapter to the RecyclerView
-        binding.stockRecyclerView.adapter = stockAdapter
         binding.stockRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.stockRecyclerView.adapter = stockAdapter
 
         // Call the API to get the stock details for the entered symbol
         ApiInterface.create().stockRealTimePrice(symbol).enqueue(object : Callback<RealTimePrice> {
@@ -106,7 +111,7 @@ class StockDetailFragment : Fragment() {
             }
         })
     }
-
+    // helper function
     private fun pleaseUpdate(){
         if (quote != null && sym != null && cp != null) {
             updateStockDetails(quote!!, cp!!, sym!!)

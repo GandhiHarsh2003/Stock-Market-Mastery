@@ -8,9 +8,9 @@ import android.view.ViewGroup
 
 
 /**
- * About Fraggment Responsible for informing the user the purpose of what the app is about (not much to it.)
+ * About Fragment Responsible for informing the user the purpose of what the app is about (not much to it.)
  * @author Kevin Rodriguez and Harsh Gandhi
- * Date:
+ * Date: 4/20/23
  */
 class AboutFragment : Fragment() {
 

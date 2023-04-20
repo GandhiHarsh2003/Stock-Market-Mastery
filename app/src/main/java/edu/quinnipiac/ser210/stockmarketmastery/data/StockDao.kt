@@ -3,6 +3,11 @@ package edu.quinnipiac.ser210.stockmarketmastery.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
+/**
+ * StockDao for providing access to database (NOT FROM SPRINT ONE)
+ * @author Kevin Rodriguez and Harsh Gandhi
+ * Date: 4/20/23
+ */
 @Dao
 interface StockDao {
     @Insert

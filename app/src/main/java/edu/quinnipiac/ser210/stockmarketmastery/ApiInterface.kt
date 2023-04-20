@@ -10,9 +10,13 @@ import retrofit2.http.Query
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 
-
+/**
+ * API interface responsible for retrieving data from the API
+ * @author Kevin Rodriguez and Harsh Gandhi
+ * Date: 4/20/23
+ */
 interface ApiInterface {
-
+    // get data from quote endpoint
     @GET("quote")
     @Headers(
         "X-RapidAPI-Key: 0e4746146amsh235878ec1c91e87p1daba7jsn52d8e303af12",
@@ -21,7 +25,7 @@ interface ApiInterface {
     fun stockSearchPrice(
         @Query("symbol") query: String,
     ): Call<QuoteStock>
-
+    // get data from logo endpoint
     @GET("logo")
     @Headers(
         "X-RapidAPI-Key: 0e4746146amsh235878ec1c91e87p1daba7jsn52d8e303af12",
@@ -31,6 +35,7 @@ interface ApiInterface {
         @Query("symbol") query: String,
     ): Call<LogoStock>
 
+    // get data from the price endpoint
     @GET("price")
     @Headers(
         "X-RapidAPI-Key: 0e4746146amsh235878ec1c91e87p1daba7jsn52d8e303af12",
@@ -46,19 +51,10 @@ interface ApiInterface {
 
         // create function that will build retrofit
         fun create(): ApiInterface {
-
-            val logging = HttpLoggingInterceptor()
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-
-            // Create the OkHttpClient with the logging interceptor
-            val client = OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build()
-
+            // create retrofit
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Base_URL)
-                .client(client)
                 .build()
             return retrofit.create(ApiInterface::class.java)
         }
