@@ -10,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import org.w3c.dom.Text
 
 var data = arrayListOf<StockDetailsData>()
 var stockIndex = 0
@@ -18,9 +17,9 @@ class StockAdapter(private val context: Context, private val navController: NavC
 
     inner class StockViewHolder(view: View, private val context: Context) : RecyclerView.ViewHolder(view) {
         val priceTextView: TextView = view.findViewById(R.id.GetAPICurrentPrice)
-        val volumeTextView: TextView = view.findViewById(R.id.GetAPIAverageVolume)
+        val volumeTextView: TextView = view.findViewById(R.id.priceBoughtFor_textview)
         val logoImage: ImageView = view.findViewById(R.id.GetAPILogo)
-        val companyname: TextView = view.findViewById(R.id.GetAPICompanyName)
+        val companyname: TextView = view.findViewById(R.id.GetAPICompanyNameSell)
         val stockHigh: TextView = view.findViewById(R.id.GetAPIstockHigh)
         val stockLow: TextView = view.findViewById(R.id.GetAPIstocklow)
         val stockMedian: TextView = view.findViewById(R.id.GetAPIstockMedian)

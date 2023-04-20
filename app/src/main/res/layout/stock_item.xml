@@ -39,7 +39,7 @@
                 android:layout_margin="8dp" />
 
             <TextView
-                android:id="@+id/GetAPICompanyName"
+                android:id="@+id/GetAPICompanyNameSell"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"
@@ -61,7 +61,7 @@
                 android:layout_margin="8dp" />
 
             <TextView
-                android:id="@+id/AverageVolume"
+                android:id="@+id/priceBoughtForLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Average Volume"
@@ -72,7 +72,7 @@
                 android:layout_margin="8dp" />
 
             <TextView
-                android:id="@+id/GetAPIAverageVolume"
+                android:id="@+id/priceBoughtFor_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="TextView"

@@ -32,4 +32,9 @@
             android:name="UserStockSymbol"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/sellFragment"
+        android:name="edu.quinnipiac.ser210.stockmarketmastery.SellFragment"
+        android:label="fragment_sell"
+        tools:layout="@layout/fragment_sell" />
 </navigation>
