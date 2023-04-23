@@ -12,6 +12,7 @@ class StockDetailsViewModelFactory(private val dao: StockDao): ViewModelProvider
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(StockDetailsViewModel::class.java)){
+            @Suppress("Unchecked Cast")
             return  StockDetailsViewModel(dao) as T
         }
         throw  java.lang.IllegalArgumentException("Unknown ViewModel")

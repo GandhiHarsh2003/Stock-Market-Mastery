@@ -17,6 +17,6 @@ data class Stock(
     var companyName: String,
     @ColumnInfo(name = "purchased")
     var purchased: Double,
-    @ColumnInfo(name = "stock_bought")
-    var stockBought: Boolean = false
+    @ColumnInfo(name = "stockQuantity")
+    var stockQuantity: Int,
 )

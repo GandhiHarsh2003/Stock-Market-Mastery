@@ -3,6 +3,8 @@ package edu.quinnipiac.ser210.stockmarketmastery.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
+import kotlinx.coroutines.flow.Flow
+
 /**
  * StockDao for providing access to database (NOT FROM SPRINT ONE)
  * @author Kevin Rodriguez and Harsh Gandhi
@@ -10,7 +12,7 @@ import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
  */
 @Dao
 interface StockDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(stock: Stock)
 
     @Update
@@ -20,8 +22,8 @@ interface StockDao {
     suspend fun delete(stock: Stock)
 
     @Query("SELECT * FROM stock_table WHERE id = :id")
-    fun get(id: Int): LiveData<Stock>
+    fun get(id: Int): Flow<Stock>
 
     @Query("SELECT * FROM stock_table ORDER BY id ASC")
-    fun getAll(): LiveData<List<Stock>>
+    fun getAll(): Flow<List<Stock>>
 }

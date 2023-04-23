@@ -1,13 +1,18 @@
 package edu.quinnipiac.ser210.stockmarketmastery
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
 import edu.quinnipiac.ser210.stockmarketmastery.databinding.FragmentStockDetailBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,9 +28,16 @@ var cp: RealTimePrice? = null
 
 class StockDetailFragment : Fragment() {
     lateinit var symbol: String
-    private lateinit var binding: FragmentStockDetailBinding
+    private var binding: FragmentStockDetailBinding? = null
     private lateinit var stockAdapter: StockAdapter
+    private val viewModel: StockDetailsViewModel by activityViewModels {
+        StockDetailsViewModelFactory(
+            (activity?.application as StockApplication).database.stockDao()
+        )
+    }
+    lateinit var stock: Stock
      var stockIndex = 0
+    //     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +53,7 @@ class StockDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentStockDetailBinding.inflate(layoutInflater)
-        return binding.root
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,8 +63,8 @@ class StockDetailFragment : Fragment() {
         stockAdapter = StockAdapter(requireContext(), findNavController())
 
         // Set the adapter to the RecyclerView
-        binding.stockRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.stockRecyclerView.adapter = stockAdapter
+        binding?.stockRecyclerView?.layoutManager = LinearLayoutManager(context)
+        binding?.stockRecyclerView?.adapter = stockAdapter
 
         // Call the API to get the stock details for the entered symbol
         ApiInterface.create().stockRealTimePrice(symbol).enqueue(object : Callback<RealTimePrice> {
@@ -110,6 +122,14 @@ class StockDetailFragment : Fragment() {
                 t.message?.let { Log.d("onFailure", it) }
             }
         })
+        binding?.BuyButton?.setOnClickListener{
+            if(binding?.QuantityText?.text.toString() != "") {
+                addNewItem()
+            }
+            else {
+                Toast.makeText(requireContext(), "Enter Quantity", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     // helper function
     private fun pleaseUpdate(){
@@ -119,6 +139,7 @@ class StockDetailFragment : Fragment() {
             println("it is null")
         }
     }
+
     private fun updateStockDetails(
         quoteStock: QuoteStock,
         realTimePrice: RealTimePrice,
@@ -131,5 +152,32 @@ class StockDetailFragment : Fragment() {
                 logoStock = logoStock
             )
         stockAdapter.updateStocks(listOf(stockDetailsData))
+    }
+
+    private fun isEntryValid(): Boolean{
+        return viewModel.isEntryValid(
+            binding?.QuantityText.toString()
+        )
+    }
+
+    private fun addNewItem(){
+        if(isEntryValid()){
+            viewModel.addNewItem(
+                quote?.name.toString(),
+                cp?.price.toString(),
+                binding?.QuantityText?.text.toString()
+            )
+        }
+        val action = StockDetailFragmentDirections.actionStockDetailFragmentToSellFragment()
+        findNavController().navigate(action)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Hide keyboard.
+        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as
+                InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
+        binding = null
     }
 }
