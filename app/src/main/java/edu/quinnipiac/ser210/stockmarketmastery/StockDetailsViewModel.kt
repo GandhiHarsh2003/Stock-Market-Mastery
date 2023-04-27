@@ -19,21 +19,25 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
     private val binding get() = _binding!!
 
 
+    // checks to see if there's stock saved in the database
     fun isStockAvailable(stock: Stock): Boolean {
         return (stock.stockQuantity > 0)
     }
 
+    // will allow the ability to update a stock saved in the database
     fun updateItem(itemId: Int, companyName: String, purchased: String, stockQuantity: String) {
         val newItem = getUpdatedStockEntry(itemId, companyName, purchased, stockQuantity)
         updateItem(newItem)
     }
 
+    // update that stock
     private fun updateItem(stock: Stock) {
         viewModelScope.launch {
             stockDao.update(stock)
         }
     }
 
+    // will get the stock saved and perform some calcualtions to determine if profit was earned or not
     fun sellItem(context: Context, stock: Stock, sellPrice: String, boughtPrice: String, quant: String) {
         val bp: Double = boughtPrice.toDouble()
         println(bp)
@@ -44,6 +48,7 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
         println(quantity)
 
 
+        // math conversion to check the amount of profit earned on specific stock
         if (stock.stockQuantity >= quantity) {
             // Decrease the quantity by 1
             val profitOrNot: Double = sp * quantity
@@ -59,29 +64,32 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
     }
 
 
+    // insert stock item to the database
     fun addNewItem(companyName: String, purchased: String, stockQuantity: String) {
         val newItem = getNewStock(companyName, purchased, stockQuantity)
         insetItem(newItem)
     }
 
 
-
+    // insert stock item to the database
     private fun insetItem(stock: Stock) {
         viewModelScope.launch {
             stockDao.insert(stock)
         }
     }
-    // maybe we'll get to this in the third sprint
+    // deletes the saved stock
     fun deleteStock(stock: Stock) {
         viewModelScope.launch {
             stockDao.delete(stock)
         }
     }
 
+    // find the specific stock saved in the database
     fun retrieveItem(id: Int): LiveData<Stock> {
         return stockDao.get(id).asLiveData()
     }
 
+    // will check if input is valid to save in the database
     fun isEntryValid(stockQuantity: String): Boolean {
         if (stockQuantity.isBlank()) {
             return false
@@ -89,6 +97,7 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
         return true
     }
 
+    // get the new stock
     private fun getNewStock(companyName: String, purchased: String, stockQuantity: String): Stock {
         return Stock(
             companyName = companyName,
@@ -97,6 +106,7 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
         )
     }
 
+    // get the update stock if the user updates data saved
     private fun getUpdatedStockEntry(
         itemId: Int,
         companyName: String,

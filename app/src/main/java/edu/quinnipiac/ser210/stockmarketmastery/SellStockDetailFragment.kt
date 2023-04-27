@@ -12,21 +12,20 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
 import edu.quinnipiac.ser210.stockmarketmastery.databinding.FragmentSellStockDetailBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
 
 /**
- * A simple [Fragment] subclass.
- * Use the [SellStockDetail.newInstance] factory method to
- * create an instance of this fragment.
+ * SellStockDetail Fragment responsible for displaying stock and allowing the user to sell their stock.
+ * @author Kevin Rodriguez and Harsh Gandhi
+ * Date: 4/27/2023
  */
 class SellStockDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
+   //
     private val navigationArgs: SellStockDetailFragmentArgs by navArgs()
     lateinit var stock: Stock
 
+    // create instance of the view model
     private val viewModel: StockDetailsViewModel by activityViewModels {
         StockDetailsViewModelFactory(
             (activity?.application as StockApplication).database.stockDao()
@@ -39,7 +38,7 @@ class SellStockDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
-
+    // inflates layout used for this fragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +47,7 @@ class SellStockDetailFragment : Fragment() {
         return binding.root
     }
 
+    // bind all the data to the UI
     private fun bind(stock: Stock) {
         binding.apply {
             companyName.text = stock.companyName
@@ -65,6 +65,7 @@ class SellStockDetailFragment : Fragment() {
         }
     }
 
+    // message that will allow users to ensure if there want to get rid of that stock
     private fun showConfirmationDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(android.R.string.dialog_alert_title))
@@ -77,11 +78,13 @@ class SellStockDetailFragment : Fragment() {
             .show()
     }
 
+    // deletes the stock from the database
     private fun deleteItem() {
         viewModel.deleteStock(stock)
         findNavController().navigateUp()
     }
 
+    // gets specific stock being retrieved from the database
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.itemId
@@ -91,6 +94,7 @@ class SellStockDetailFragment : Fragment() {
         }
     }
 
+    // destroys the view as soon as soon as the app shuts down
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
