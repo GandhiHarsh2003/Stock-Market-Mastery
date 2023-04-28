@@ -15,6 +15,8 @@ import edu.quinnipiac.ser210.stockmarketmastery.databinding.SellStockItemBinding
  */
 class SellStockAdapter(private val onItemClicked: (Stock) -> Unit) :
     ListAdapter<Stock, SellStockAdapter.ItemViewHolder>(DiffCallback) {
+
+    // initialize view holder for the sell stock adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
             SellStockItemBinding.inflate(
@@ -24,7 +26,7 @@ class SellStockAdapter(private val onItemClicked: (Stock) -> Unit) :
             )
         )
     }
-
+    // get the items at that current position and then bind the data
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener {
@@ -35,7 +37,7 @@ class SellStockAdapter(private val onItemClicked: (Stock) -> Unit) :
 
     class ItemViewHolder(private var binding: SellStockItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
+        // bind all the data being retrieved to the UI
         fun bind(item: Stock) {
             binding.companyName.text = item.companyName
             binding.stockPrice.text = item.purchased.toString()
@@ -43,6 +45,7 @@ class SellStockAdapter(private val onItemClicked: (Stock) -> Unit) :
         }
     }
 
+    // checks if the contents are the same or not
     companion object {
         private val DiffCallback = object : DiffUtil.ItemCallback<Stock>() {
             override fun areItemsTheSame(oldItem: Stock, newItem: Stock): Boolean {
