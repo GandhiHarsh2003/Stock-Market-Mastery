@@ -31,9 +31,6 @@
         <argument
             android:name="UserStockSymbol"
             app:argType="string" />
-        <action
-            android:id="@+id/action_stockDetailFragment_to_sellFragment"
-            app:destination="@id/sellFragment" />
     </fragment>
     <fragment
         android:id="@+id/sellFragment"
@@ -43,6 +40,10 @@
         <action
             android:id="@+id/action_sellFragment_to_sellStockDetailFragment"
             app:destination="@id/sellStockDetailFragment" />
+        <argument
+            android:name="ProfitMade"
+            app:argType="float"
+            android:defaultValue="0.00" />
     </fragment>
     <fragment
         android:id="@+id/sellStockDetailFragment"
@@ -52,5 +53,13 @@
         <argument
             android:name="item_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_sellStockDetailFragment_to_sellFragment"
+            app:destination="@id/sellFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="edu.quinnipiac.ser210.stockmarketmastery.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

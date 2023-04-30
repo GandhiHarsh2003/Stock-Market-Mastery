@@ -3,6 +3,7 @@ package edu.quinnipiac.ser210.stockmarketmastery
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.*
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
 import edu.quinnipiac.ser210.stockmarketmastery.data.StockDao
 import edu.quinnipiac.ser210.stockmarketmastery.databinding.FragmentStockDetailBinding
@@ -16,7 +17,6 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
 
     val allItems: LiveData<List<Stock>> = stockDao.getAll().asLiveData()
     private var _binding: FragmentStockDetailBinding? = null
-    private val binding get() = _binding!!
 
 
     // checks to see if there's stock saved in the database
@@ -38,7 +38,7 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
     }
 
     // will get the stock saved and perform some calcualtions to determine if profit was earned or not
-    fun sellItem(context: Context, stock: Stock, sellPrice: String, boughtPrice: String, quant: String) {
+    fun sellItem(context: Context, stock: Stock, sellPrice: String, boughtPrice: String, quant: String): Float {
         val bp: Double = boughtPrice.toDouble()
         println(bp)
         val sp: Double = sellPrice.toDouble()
@@ -47,6 +47,8 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
         val quantity: Int = quant.toInt()
         println(quantity)
 
+        var calculate: Float = 0.0F
+
 
         // math conversion to check the amount of profit earned on specific stock
         if (stock.stockQuantity >= quantity) {
@@ -54,13 +56,15 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
             val profitOrNot: Double = sp * quantity
             println(profitOrNot)
 
-            val calculate: Double = profitOrNot - (bp * quantity)
+            calculate = (profitOrNot - (bp * quantity)).toFloat()
             println(calculate)
 
             val newItem = stock.copy(stockQuantity = (stock.stockQuantity - quantity))
             Toast.makeText(context, "Profit made $calculate", Toast.LENGTH_SHORT).show()
             updateItem(newItem)
         }
+        println("R u sure $calculate")
+        return calculate
     }
 
 

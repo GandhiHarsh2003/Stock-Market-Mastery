@@ -125,6 +125,7 @@ class StockDetailFragment : Fragment() {
         binding?.BuyButton?.setOnClickListener{
             if(binding?.QuantityText?.text.toString() != "") {
                 addNewItem()
+                Toast.makeText(requireContext(), "Bought Stock Successfully", Toast.LENGTH_SHORT).show()
             }
             else {
                 Toast.makeText(requireContext(), "Enter Quantity", Toast.LENGTH_SHORT).show()
@@ -168,8 +169,6 @@ class StockDetailFragment : Fragment() {
                 binding?.QuantityText?.text.toString()
             )
         }
-        val action = StockDetailFragmentDirections.actionStockDetailFragmentToSellFragment()
-        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

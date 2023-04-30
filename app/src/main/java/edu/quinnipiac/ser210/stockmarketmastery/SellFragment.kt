@@ -19,6 +19,7 @@ import edu.quinnipiac.ser210.stockmarketmastery.databinding.SellStockItemBinding
  * Date: 4/20/23
  */
 class SellFragment : Fragment() {
+    var profits: Float = 0.0f
 
     private val viewModel: StockDetailsViewModel by activityViewModels {
         StockDetailsViewModelFactory(
@@ -33,13 +34,18 @@ class SellFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        arguments?.let {
+            profits = SellFragmentArgs.fromBundle(it).ProfitMade
+        }
         _binding = FragmentSellBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+        println("The profit made was $profits")
+        val currentValue = binding.profit.text.toString().toDouble()
+        val totalValue = currentValue + profits!!
+        binding.profit.text =  "$ $totalValue"
         val adapter = SellStockAdapter {
             val action = SellFragmentDirections.actionSellFragmentToSellStockDetailFragment(it.id)
             this.findNavController().navigate(action)
