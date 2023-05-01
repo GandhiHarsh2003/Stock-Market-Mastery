@@ -40,10 +40,6 @@
         <action
             android:id="@+id/action_sellFragment_to_sellStockDetailFragment"
             app:destination="@id/sellStockDetailFragment" />
-        <argument
-            android:name="ProfitMade"
-            app:argType="float"
-            android:defaultValue="0.00" />
     </fragment>
     <fragment
         android:id="@+id/sellStockDetailFragment"
@@ -53,9 +49,6 @@
         <argument
             android:name="item_id"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_sellStockDetailFragment_to_sellFragment"
-            app:destination="@id/sellFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

@@ -59,9 +59,9 @@ class SellStockDetailFragment : Fragment() {
                 val sellPrice: String = binding.sellingPrice.text.toString()
                 if(sellPrice != "" && quant != "") {
                     var profitMade: Float = viewModel.sellItem(requireContext(), stock, sellPrice, stock.purchased.toString(), quant)
-                    println("profitMade was like this $profitMade")
-                    val action = SellStockDetailFragmentDirections.actionSellStockDetailFragmentToSellFragment(profitMade)
-                    findNavController().navigate(action)
+                    var add = binding.profit.text.toString().toFloat()
+                    var calc = profitMade + add
+                    binding.profit.text = calc.toString()
                 }
             }
             deleteItem.setOnClickListener { showConfirmationDialog() }

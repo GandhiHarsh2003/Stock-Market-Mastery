@@ -40,10 +40,7 @@ class StockDetailsViewModel(private val stockDao: StockDao): ViewModel() {
     // will get the stock saved and perform some calcualtions to determine if profit was earned or not
     fun sellItem(context: Context, stock: Stock, sellPrice: String, boughtPrice: String, quant: String): Float {
         val bp: Double = boughtPrice.toDouble()
-        println(bp)
         val sp: Double = sellPrice.toDouble()
-        println(sp)
-
         val quantity: Int = quant.toInt()
         println(quantity)
 

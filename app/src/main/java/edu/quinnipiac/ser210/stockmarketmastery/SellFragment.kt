@@ -34,18 +34,12 @@ class SellFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        arguments?.let {
-            profits = SellFragmentArgs.fromBundle(it).ProfitMade
-        }
         _binding = FragmentSellBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         println("The profit made was $profits")
-        val currentValue = binding.profit.text.toString().toDouble()
-        val totalValue = currentValue + profits!!
-        binding.profit.text =  "$ $totalValue"
         val adapter = SellStockAdapter {
             val action = SellFragmentDirections.actionSellFragmentToSellStockDetailFragment(it.id)
             this.findNavController().navigate(action)
