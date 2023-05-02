@@ -2,6 +2,8 @@ package edu.quinnipiac.ser210.stockmarketmastery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,7 @@ import edu.quinnipiac.ser210.stockmarketmastery.databinding.SellStockItemBinding
  */
 class SellStockAdapter(private val onItemClicked: (Stock) -> Unit) :
     ListAdapter<Stock, SellStockAdapter.ItemViewHolder>(DiffCallback) {
+
 
     // initialize view holder for the sell stock adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -57,5 +60,4 @@ class SellStockAdapter(private val onItemClicked: (Stock) -> Unit) :
             }
         }
     }
-
 }

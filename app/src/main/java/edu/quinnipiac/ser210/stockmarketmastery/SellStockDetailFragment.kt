@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.quinnipiac.ser210.stockmarketmastery.data.Stock
 import edu.quinnipiac.ser210.stockmarketmastery.databinding.FragmentSellStockDetailBinding
-
-
 
 /**
  * SellStockDetail Fragment responsible for displaying stock and allowing the user to sell their stock.
@@ -50,9 +50,11 @@ class SellStockDetailFragment : Fragment() {
     // bind all the data to the UI
     private fun bind(stock: Stock) {
         binding.apply {
-            companyName.text = stock.companyName
-            stockPrice.text = stock.purchased.toString()
-            stockQuantity.text = stock.stockQuantity.toString()
+            // Use data binding to set the values of the TextViews
+            companyName1 = stock.companyName
+            purchased = stock.purchased.toString()
+            quantity = stock.stockQuantity.toString()
+
             sellItem.isEnabled = viewModel.isStockAvailable(stock)
             sellItem.setOnClickListener {
                 val quant: String = binding.quantityStock.text.toString()
