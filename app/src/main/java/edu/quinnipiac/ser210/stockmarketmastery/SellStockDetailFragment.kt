@@ -23,6 +23,7 @@ class SellStockDetailFragment : Fragment() {
 
    //
     private val navigationArgs: SellStockDetailFragmentArgs by navArgs()
+    // data entity of stock
     lateinit var stock: Stock
 
     // create instance of the view model

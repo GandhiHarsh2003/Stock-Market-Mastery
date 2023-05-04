@@ -19,8 +19,10 @@ import edu.quinnipiac.ser210.stockmarketmastery.databinding.SellStockItemBinding
  * Date: 4/20/23
  */
 class SellFragment : Fragment() {
+    // to calculate the profit
     var profits: Float = 0.0f
 
+    // initialize view model
     private val viewModel: StockDetailsViewModel by activityViewModels {
         StockDetailsViewModelFactory(
             (activity?.application as StockApplication).database.stockDao()
@@ -39,11 +41,14 @@ class SellFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // testing purposes
         println("The profit made was $profits")
+        // passing the id once you know what stock to click
         val adapter = SellStockAdapter {
             val action = SellFragmentDirections.actionSellFragmentToSellStockDetailFragment(it.id)
             this.findNavController().navigate(action)
         }
+
         binding.recyclerSellView.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerSellView.adapter = adapter
         // Attach an observer on the allItems list to update the UI automatically when the data

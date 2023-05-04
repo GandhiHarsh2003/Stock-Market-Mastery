@@ -27,9 +27,12 @@ var sym: LogoStock? = null
 var cp: RealTimePrice? = null
 
 class StockDetailFragment : Fragment() {
+    // symbol of stock company
     lateinit var symbol: String
     private var binding: FragmentStockDetailBinding? = null
+    // adapter to be used within the fragment
     private lateinit var stockAdapter: StockAdapter
+    // initialize view model
     private val viewModel: StockDetailsViewModel by activityViewModels {
         StockDetailsViewModelFactory(
             (activity?.application as StockApplication).database.stockDao()
@@ -40,6 +43,7 @@ class StockDetailFragment : Fragment() {
     //     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
 
 
+    // get the stock symbol passed in
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -71,6 +75,7 @@ class StockDetailFragment : Fragment() {
             override fun onResponse(
                 call: Call<RealTimePrice>, response: retrofit2.Response<RealTimePrice>
             ) {
+                // get real time price
                 if (response.isSuccessful) {
                     val realTimePrice = response.body()
                     println("THis is is real time" + realTimePrice)
@@ -89,6 +94,7 @@ class StockDetailFragment : Fragment() {
             override fun onResponse(
                 call: Call<LogoStock>, response: retrofit2.Response<LogoStock>
             ) {
+                // get the logo url (used for loading the companies logo image)
                 if (response.isSuccessful) {
                     val logoUrl = response.body()
                     println("THis is is url" + logoUrl)
@@ -107,6 +113,7 @@ class StockDetailFragment : Fragment() {
             override fun onResponse(
                 call: Call<QuoteStock>, response: retrofit2.Response<QuoteStock>
             ) {
+                // get the quote stock
                 if (response.isSuccessful) {
                     val quoteStock = response.body()
                     println("THis is is qote stock" + quoteStock)
@@ -122,6 +129,7 @@ class StockDetailFragment : Fragment() {
                 t.message?.let { Log.d("onFailure", it) }
             }
         })
+        // used to alert the user if stock was bought or not
         binding?.BuyButton?.setOnClickListener{
             if(binding?.QuantityText?.text.toString() != "") {
                 addNewItem()
@@ -141,6 +149,7 @@ class StockDetailFragment : Fragment() {
         }
     }
 
+    // update the stocks bought
     private fun updateStockDetails(
         quoteStock: QuoteStock,
         realTimePrice: RealTimePrice,
@@ -155,12 +164,14 @@ class StockDetailFragment : Fragment() {
         stockAdapter.updateStocks(listOf(stockDetailsData))
     }
 
+    // checks for valid entry input
     private fun isEntryValid(): Boolean{
         return viewModel.isEntryValid(
             binding?.QuantityText.toString()
         )
     }
 
+    // adds stock to db
     private fun addNewItem(){
         if(isEntryValid()){
             viewModel.addNewItem(
@@ -170,7 +181,7 @@ class StockDetailFragment : Fragment() {
             )
         }
     }
-
+    // if it crashes...
     override fun onDestroyView() {
         super.onDestroyView()
         // Hide keyboard.
