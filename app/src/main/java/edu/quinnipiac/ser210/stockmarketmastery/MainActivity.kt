@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 shareIntent.type = "text/plain"
                 val stringBuilder = StringBuilder()
 
-                // Get the currently displayed country in the stock detail fragment
+                // Get the currently displayed stock in the stock detail fragment
                 val navHostFragment =
                     supportFragmentManager.primaryNavigationFragment as NavHostFragment?
                 val stockFragment =

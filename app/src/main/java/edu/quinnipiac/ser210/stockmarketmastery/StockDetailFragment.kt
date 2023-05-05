@@ -47,7 +47,7 @@ class StockDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            symbol = StockDetailFragmentArgs.fromBundle(it).UserStockSymbol.toString()
+            symbol = StockDetailFragmentArgs.fromBundle(it).UserStockSymbol
         }
     }
 

@@ -31,7 +31,6 @@ abstract class StockDatabase : RoomDatabase() {
                     .build()
                 INSTANCE = instance
                  return instance
-//                instance
             }
         }
     }
